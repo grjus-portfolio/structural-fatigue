@@ -81,13 +81,6 @@ const FatModFactor = (function () {
   };
 })();
 
-const deratingFactor = {
-  relLevel: 66,
-  loadType: "axiald",
-  surfFinish: ["RHR123", 155],
-  miscFactor: 0.56,
-};
-
 export function getDeratingFactor(obj) {
   if (JSON.stringify(obj) === "{}" || obj === undefined || obj === null) {
     return 1;
