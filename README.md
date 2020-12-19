@@ -12,7 +12,7 @@ npm install structural-fatigue
 
 ## Usage
 
-**This library is valid for ksi stress unit only**
+**Input stress and related material constants should be defined in ksi**
 
 ```javascript
 import { calculateFatigueStress } from "./Fatigue.js";
@@ -45,3 +45,7 @@ const damage = requiredCycles.map((item, idx) =>
   calculateDamage(fatigueStress[idx], item, -155, modificationFactor)
 );
 ```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
