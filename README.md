@@ -42,7 +42,7 @@ const fatigueStress = minStress.map((item, idx) =>
 const requiredCycles = [200_000, 400_000, 300_000, 200_000];
 
 const damage = requiredCycles.map((item, idx) =>
-  calculateDamage(fatigueStress[idx], item, -155, modificationFactor)
+  calculateDamage(fatigueStress[idx], item, 155, modificationFactor)
 );
 ```
 
