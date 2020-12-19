@@ -15,34 +15,67 @@ npm install structural-fatigue
 **Input stress and related material constants should be defined in ksi**
 
 ```javascript
-import { calculateFatigueStress } from "./Fatigue.js";
-import { getDeratingFactor } from "./ModificationFactors.js";
-import { calculateDamage } from "./Damage.js";
+import {
+  calculateStressRatio,
+  calculateAlternatingStress,
+  calculateMeanStress,
+  calculateFatigueStress,
+  calculateDamage,
+  getDeratingFactor,
+} from "structural-fatigue";
 
-const modificationFactor = getDeratingFactor({
-  relLevel: 66,
-  loadType: "axial",
-  surfFinish: ["RHR125", 155],
-  miscFactor: 0.56,
-});
+// DEFINE STRESS VALUES. Only stress in "ksi" units are valid
 
-const minStress = [-10, -20, -30, -50];
-const maxStress = [20, 30, 50, 30];
+const minStress = -40;
+const maxStress = 50;
+const ultStrength = 155;
 
-const fatigueStress = minStress.map((item, idx) =>
-  calculateFatigueStress(
-    item,
-    maxStress[idx],
-    "GOODMAN",
-    { ultStrength: 155 },
-    true
-  )
+//STRESS RATIO
+
+const stressRatio = calculateStressRatio(minStress, maxStress);
+
+//ALTERNATING STRESS
+
+const altStress = calculateAlternatingStress(minStress, maxStress);
+
+//MEAN STRESS
+
+const meanStress = calculateMeanStress(minStress, maxStress);
+
+// FATIGUE STRESS
+
+// Avaiable fatigue models: GOODMAN, GERBER, SODERBERG
+// stressCorrection - if true -> in case of negative compressive stress, zero value is applied
+// for SODERBERG fatigue model one must define {yieldStrength: value} as matConstant
+
+const fatigueStress = calculateFatigueStress(
+  minStress,
+  maxStress,
+  "GOODMAN",
+  { ultStrength: ultStrength },
+  true
 );
 
-const requiredCycles = [200_000, 400_000, 300_000, 200_000];
+// CALCULATE EFFECTIVE FATIGUE DERATING FACTOR
 
-const damage = requiredCycles.map((item, idx) =>
-  calculateDamage(fatigueStress[idx], item, 155, modificationFactor)
+const modificationFactors = {
+  relLevel: 95, //% value
+  loadType: "axial", //
+  surfFinish: ["RHR125", ultStrength],
+  miscFactor: 1.0,
+};
+
+const effectiveDeratingFactor = getDeratingFactor(modificationFactors);
+
+//CALCULATE DAMAGE
+
+const requiredCycle = 400_000;
+
+const damage = calculateDamage(
+  fatigueStress,
+  requiredCycle,
+  ultStrength,
+  effectiveDeratingFactor
 );
 ```
 
