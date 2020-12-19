@@ -1,6 +1,6 @@
 {
-  "name": "@grjus/structural-fatigue",
-  "version": "1.0.0",
+  "name": "structural-fatigue",
+  "version": "1.0.1",
   "description": "Calculates: fatigue stress, damage, equivalent modification factor",
   "keywords": [
     "fatigue stress",
