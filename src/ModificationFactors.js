@@ -92,11 +92,3 @@ export function getDeratingFactor(obj) {
     console.error(e.name, e.message);
   }
 }
-
-const test = {
-  loadType: "bending", //
-  miscFactor: 0.868,
-  lol: 3,
-};
-
-console.log(getDeratingFactor(test));
