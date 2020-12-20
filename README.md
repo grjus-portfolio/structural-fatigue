@@ -59,7 +59,6 @@ const fatigueStress = calculateFatigueStress(
 // CALCULATE EFFECTIVE FATIGUE DERATING FACTOR
 
 const modificationFactors = {
-  relLevel: 95, //% value
   loadType: "axial", //
   surfFinish: ["RHR125", ultStrength],
   miscFactor: 1.0,
