@@ -1,3 +1,5 @@
+//source: https://stackoverflow.com/questions/8816729/javascript-equivalent-for-inverse-normal-function-eg-excels-normsinv-or-nor
+
 export default function normalinv() {
   function erfcinv(p) {
     var j = 0;
