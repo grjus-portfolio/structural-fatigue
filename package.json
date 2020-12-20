@@ -1,6 +1,6 @@
 {
   "name": "structural-fatigue",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Calculates: fatigue stress, damage, equivalent modification factor",
   "keywords": [
     "fatigue stress",
@@ -19,8 +19,5 @@
   },
   "author": "grjus",
   "license": "MIT",
-  "type": "module",
-  "dependencies": {
-    "norminv": "^2.0.0"
-  }
+  "type": "module"
 }

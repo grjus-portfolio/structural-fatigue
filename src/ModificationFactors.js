@@ -1,5 +1,3 @@
-import norminv from "norminv";
-
 function InvalidFactorDefinition(message) {
   this.message = message || "Modification factor is not valid !";
   this.name = "InvalidFactorDefinition";
@@ -28,15 +26,6 @@ const FatModFactor = (function () {
   };
 
   return {
-    relLevel: function (p) {
-      if (isNaN(p) || p < 50 || p >= 100) {
-        throw new InvalidFactorDefinition(
-          "Reliability factor should be greater than 50 and less than 100"
-        );
-      } else {
-        return norminv(p, 0, 0.08);
-      }
-    },
     loadType: function (loadType) {
       if (!(loadType in loadFactor)) {
         throw new InvalidFactorDefinition(
@@ -88,14 +77,14 @@ export function getDeratingFactor(obj) {
 
   const params = Object.keys(obj);
   try {
-    if (
-      JSON.stringify(Object.keys(FatModFactor)) !==
-      JSON.stringify(Object.keys(obj))
-    ) {
-      throw new InvalidFactorDefinition(
-        "Invalid key in modification factor definition"
-      );
+    for (let each of Object.keys(obj)) {
+      if (!Object.keys(FatModFactor).includes(each)) {
+        throw new InvalidFactorDefinition(
+          "Invalid key in modification factor definition"
+        );
+      }
     }
+
     return params
       .map((item) => FatModFactor[item](obj[item]))
       .reduce((a, b) => a * b, 1);
@@ -103,3 +92,11 @@ export function getDeratingFactor(obj) {
     console.error(e.name, e.message);
   }
 }
+
+const test = {
+  loadType: "bending", //
+  miscFactor: 0.868,
+  lol: 3,
+};
+
+console.log(getDeratingFactor(test));
