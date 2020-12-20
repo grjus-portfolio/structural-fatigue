@@ -70,6 +70,12 @@ const FatModFactor = (function () {
   };
 })();
 
+/**
+ * Calculate effective faitgue derating fattor
+ * @param {object} obj Example object structure: {loadType: "axial", surfFinish: ["RHR125", ultStrength],miscFactor: 1.0};
+ * @returns {number} Effective modification factor
+ */
+
 export function getDeratingFactor(obj) {
   if (JSON.stringify(obj) === "{}" || obj === undefined || obj === null) {
     return 1;

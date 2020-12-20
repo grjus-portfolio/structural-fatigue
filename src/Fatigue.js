@@ -103,7 +103,15 @@ Stress.prototype = {
   },
 };
 
-//EXPORT
+/**
+ * Calculates fatigue stress
+ * @param {number} minStress Minimum stress value (ksi)
+ * @param {number} maxStress Maximum stress value (ksi)
+ * @param {string} fatigueModel Avaiable fatigue models:GOODMAN,GERBER, SODERBERG
+ * @param {object} matConstant  For GOODMAN and GERBER {ultStrength:value}, for SODERBERG {yieldStrength:value}. Units: (ksi)
+ * @param {boolean} stressCorrection  true?negative compressive stress set to 0:no correction
+ * @returns {number} Fatigue stress
+ */
 
 export const calculateFatigueStress = (
   minStress,
@@ -142,6 +150,12 @@ export const calculateFatigueStress = (
   }
 };
 
+/**
+ * Calculates stress ratio
+ * @param {number} minStress Minimum stress value (ksi)
+ * @param {number} maxStress Maximum stress value (ksi)
+ */
+
 export const calculateStressRatio = (minStress, maxStress) => {
   try {
     return roundOutput(new Stress(minStress, maxStress).stressRatio(), 2);
@@ -150,6 +164,11 @@ export const calculateStressRatio = (minStress, maxStress) => {
   }
 };
 
+/**
+ * Calculates alternating stress
+ * @param {number} minStress Minimum stress value (ksi)
+ * @param {number} maxStress Maximum stress value (ksi)
+ */
 export const calculateAlternatingStress = (minStress, maxStress) => {
   try {
     return roundOutput(new Stress(minStress, maxStress).alternatingStress(), 2);
@@ -157,7 +176,11 @@ export const calculateAlternatingStress = (minStress, maxStress) => {
     console.log(e.name, e.message);
   }
 };
-
+/**
+ * Calculates mean stress
+ * @param {number} minStress Minimum stress value (ksi)
+ * @param {number} maxStress Maximum stress value (ksi)
+ */
 export const calculateMeanStress = (minStress, maxStress) => {
   try {
     return roundOutput(new Stress(minStress, maxStress).meanStress(), 2);

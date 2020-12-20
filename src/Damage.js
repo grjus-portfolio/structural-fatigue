@@ -52,7 +52,13 @@ Damage.prototype = {
     return this.requiredCycle / this.allowableCycles();
   },
 };
-
+/**
+ *
+ * @param {number} fatigueStress Fatigue stress (ksi)
+ * @param {number} requiredCycle Required cycle value
+ * @param {number} ultStrength Ultimate strength value (ksi)
+ * @param {number} modificationFactors Effecitve fatigue modificaiton factor
+ */
 export function calculateDamage(
   fatigueStress,
   requiredCycle,
