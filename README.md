@@ -24,7 +24,7 @@ import {
   getDeratingFactor,
 } from "structural-fatigue";
 
-// DEFINE STRESS VALUES. Only stress in "ksi" units are valid
+// DEFINE STRESS VALUES
 
 const minStress = -40;
 const maxStress = 50;
@@ -43,10 +43,6 @@ const altStress = calculateAlternatingStress(minStress, maxStress);
 const meanStress = calculateMeanStress(minStress, maxStress);
 
 // FATIGUE STRESS
-
-// Avaiable fatigue models: GOODMAN, GERBER, SODERBERG
-// stressCorrection - if true -> in case of negative compressive stress, zero value is applied
-// for SODERBERG fatigue model one must define {yieldStrength: value} as matConstant
 
 const fatigueStress = calculateFatigueStress(
   minStress,
