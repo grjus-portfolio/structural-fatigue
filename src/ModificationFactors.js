@@ -1,4 +1,4 @@
-import { reliabilityFactor } from "./Utils.js";
+import norminv from "norminv";
 
 function InvalidFactorDefinition(message) {
   this.message = message || "Modification factor is not valid !";
@@ -34,7 +34,7 @@ const FatModFactor = (function () {
           "Reliability factor should be greater than 50 and less than 100"
         );
       } else {
-        return reliabilityFactor(p);
+        return norminv(p, 0, 0.08);
       }
     },
     loadType: function (loadType) {

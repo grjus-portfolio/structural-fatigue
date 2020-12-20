@@ -19,5 +19,8 @@
   },
   "author": "grjus",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "norminv": "^2.0.0"
+  }
 }
