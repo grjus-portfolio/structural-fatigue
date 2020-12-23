@@ -24,25 +24,15 @@ import {
   getDeratingFactor,
 } from "structural-fatigue";
 
-// DEFINE STRESS VALUES
-
 const minStress = -40;
 const maxStress = 50;
 const ultStrength = 155;
 
-//STRESS RATIO
-
 const stressRatio = calculateStressRatio(minStress, maxStress);
-
-//ALTERNATING STRESS
 
 const altStress = calculateAlternatingStress(minStress, maxStress);
 
-//MEAN STRESS
-
 const meanStress = calculateMeanStress(minStress, maxStress);
-
-// FATIGUE STRESS
 
 const fatigueStress = calculateFatigueStress(
   minStress,
@@ -52,8 +42,6 @@ const fatigueStress = calculateFatigueStress(
   true
 );
 
-// CALCULATE EFFECTIVE FATIGUE DERATING FACTOR
-
 const modificationFactors = {
   loadType: "axial", //
   surfFinish: ["RHR125", ultStrength],
@@ -61,8 +49,6 @@ const modificationFactors = {
 };
 
 const effectiveDeratingFactor = getDeratingFactor(modificationFactors);
-
-//CALCULATE DAMAGE
 
 const requiredCycle = 400_000;
 
