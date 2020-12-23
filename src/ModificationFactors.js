@@ -1,4 +1,4 @@
-function InvalidFactorDefinition(message) {
+export function InvalidFactorDefinition(message) {
   this.message = message || "Modification factor is not valid !";
   this.name = "InvalidFactorDefinition";
 }
